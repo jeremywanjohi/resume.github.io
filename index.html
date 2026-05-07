@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Jeremy Wanjohi | Software, Data & Product Systems</title>
+
+  <meta
+    name="description"
+    content="Portfolio of Jeremy Wanjohi — computer science student building practical products across data, frontend, backend, analytics, and real-world systems."
+  />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <header class="site-header">
+    <a href="#" class="logo">JW</a>
+
+    <nav class="nav">
+      <a href="#projects">Projects</a>
+      <a href="#skills">Skills</a>
+      <a href="#timeline">Timeline</a>
+      <a href="#contact">Contact</a>
+    </nav>
+
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+      Dark
+    </button>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-content reveal">
+        <p class="eyebrow">Jeremy Wanjohi</p>
+
+        <h1>Building practical products across data, frontend, and real-world systems.</h1>
+
+        <p class="hero-text">
+          I’m a Computer Science student focused on building useful software:
+          mobile apps, dashboards, APIs, forecasting tools, and data-driven systems
+          that solve real-world problems.
+        </p>
+
+        <div class="hero-actions">
+          <a href="#projects" class="btn primary">View Projects</a>
+          <a href="https://github.com/YOUR-GITHUB-USERNAME" class="btn secondary" target="_blank">
+            GitHub
+          </a>
+          <a href="https://www.linkedin.com/in/YOUR-LINKEDIN" class="btn secondary" target="_blank">
+            LinkedIn
+          </a>
+        </div>
+      </div>
+
+      <div class="hero-visual reveal">
+        <div class="system-card main-card">
+          <span class="card-label">Featured System</span>
+          <h2>Traffic RL</h2>
+          <p>Live data → SUMO simulation → RL policy → KPI dashboard</p>
+
+          <div class="metric-grid">
+            <div>
+              <strong>Python</strong>
+              <span>Simulation</span>
+            </div>
+            <div>
+              <strong>FastAPI</strong>
+              <span>Backend</span>
+            </div>
+            <div>
+              <strong>React</strong>
+              <span>Dashboard</span>
+            </div>
+            <div>
+              <strong>Azure</strong>
+              <span>Deploy</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="floating-chip chip-one">EcoLocator</div>
+        <div class="floating-chip chip-two">Stockout SaaS</div>
+      </div>
+    </section>
+
+    <section class="section intro-strip reveal">
+      <p>
+        My work sits at the intersection of <strong>software engineering</strong>,
+        <strong>analytics</strong>, <strong>product thinking</strong>, and
+        <strong>deployment</strong>.
+      </p>
+    </section>
+
+    <section class="section" id="projects">
+      <div class="section-heading reveal">
+        <p class="eyebrow">Selected Work</p>
+        <h2>Projects from EcoLocator onwards</h2>
+        <p>
+          A focused collection of projects showing mobile development, backend systems,
+          data pipelines, dashboards, applied AI, and SaaS product thinking.
+        </p>
+      </div>
+
+      <div class="projects-grid">
+        <article class="project-card featured reveal">
+          <div class="project-top">
+            <p class="project-type">AI / Data Systems / Simulation</p>
+            <h3>Traffic RL SUMO Project</h3>
+          </div>
+
+          <p>
+            A reinforcement learning traffic signal optimization project using SUMO,
+            live traffic data, FastAPI services, KPI logging, and a React dashboard.
+          </p>
+
+          <div class="stack">
+            <span>Python</span>
+            <span>SUMO</span>
+            <span>FastAPI</span>
+            <span>React</span>
+            <span>Azure VM</span>
+            <span>systemd</span>
+          </div>
+
+          <div class="project-note">
+            Strongest proof that I can build full systems: ingestion, simulation,
+            control logic, APIs, deployment, and dashboards.
+          </div>
+
+          <a href="https://github.com/YOUR-GITHUB-USERNAME/traffic_rl" target="_blank" class="project-link">
+            View repository →
+          </a>
+        </article>
+
+        <article class="project-card reveal">
+          <div class="project-top">
+            <p class="project-type">Mobile App / Sustainability</p>
+            <h3>EcoLocator</h3>
+          </div>
+
+          <p>
+            A mobile application that helps users locate recycling centres in Nairobi
+            and earn rewards based on recycling activity.
+          </p>
+
+          <div class="stack">
+            <span>React Native</span>
+            <span>Node.js</span>
+            <span>Express</span>
+            <span>MySQL</span>
+          </div>
+
+          <div class="project-note">
+            Shows product thinking, mobile UX, backend logic, rewards flow, and
+            database design.
+          </div>
+
+          <a href="https://github.com/YOUR-GITHUB-USERNAME/ecolocator" target="_blank" class="project-link">
+            View repository →
+          </a>
+        </article>
+
+        <article class="project-card reveal">
+          <div class="project-top">
+            <p class="project-type">SaaS / Business Analytics</p>
+            <h3>Stockout Forecaster</h3>
+          </div>
+
+          <p>
+            A deterministic forecasting SaaS MVP that helps small retailers predict
+            when products may run out and how much to reorder.
+          </p>
+
+          <div class="stack">
+            <span>Next.js</span>
+            <span>TypeScript</span>
+            <span>Prisma</span>
+            <span>PostgreSQL</span>
+            <span>Vitest</span>
+          </div>
+
+          <div class="project-note">
+            Built around explainable formulas, not AI guesses. Clear retail value.
+          </div>
+
+          <a href="https://github.com/YOUR-GITHUB-USERNAME/stockout-forecaster" target="_blank" class="project-link">
+            View repository →
+          </a>
+        </article>
+
+        <article class="project-card reveal">
+          <div class="project-top">
+            <p class="project-type">Frontend Engineering / UI</p>
+            <h3>BuuPass Frontend Work</h3>
+          </div>
+
+          <p>
+            Internship experience working on user interfaces, booking workflows,
+            customer care dashboard flows, UI polish, and performance-aware screens.
+          </p>
+
+          <div class="stack">
+            <span>React</span>
+            <span>Angular</span>
+            <span>TypeScript</span>
+            <span>UI/UX</span>
+          </div>
+
+          <div class="project-note">
+            Shows industry exposure and practical frontend work beyond classroom projects.
+          </div>
+
+          <a href="#contact" class="project-link">
+            Ask me about this →
+          </a>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="skills">
+      <div class="section-heading reveal">
+        <p class="eyebrow">Capabilities</p>
+        <h2>What I can build</h2>
+      </div>
+
+      <div class="skills-grid">
+        <div class="skill-card reveal">
+          <h3>Frontend Products</h3>
+          <p>React, Angular, React Native, responsive UI, dashboards, and clean user flows.</p>
+        </div>
+
+        <div class="skill-card reveal">
+          <h3>Backend APIs</h3>
+          <p>Node.js, Express, FastAPI, REST APIs, authentication flows, and database-backed apps.</p>
+        </div>
+
+        <div class="skill-card reveal">
+          <h3>Data & Dashboards</h3>
+          <p>KPI logging, CSV/JSON pipelines, analytics dashboards, charts, and operational metrics.</p>
+        </div>
+
+        <div class="skill-card reveal">
+          <h3>Deployment & Systems</h3>
+          <p>Linux, Azure VMs, systemd services, logs, ports, monitoring, and troubleshooting.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section timeline-section" id="timeline">
+      <div class="section-heading reveal">
+        <p class="eyebrow">Progression</p>
+        <h2>Project timeline</h2>
+      </div>
+
+      <div class="timeline">
+        <div class="timeline-item reveal">
+          <span>2024</span>
+          <div>
+            <h3>EcoLocator</h3>
+            <p>Mobile recycling centre locator and rewards system.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item reveal">
+          <span>2024</span>
+          <div>
+            <h3>IoT Greenhouse Monitoring</h3>
+            <p>Sensor-based monitoring system for agriculture and environmental data.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item reveal">
+          <span>2025</span>
+          <div>
+            <h3>BuuPass Frontend Internship</h3>
+            <p>Practical UI engineering, dashboard workflows, and product interface improvements.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item reveal">
+          <span>2025</span>
+          <div>
+            <h3>Traffic RL SUMO Project</h3>
+            <p>Traffic simulation, reinforcement learning control, live APIs, and KPI dashboards.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item reveal">
+          <span>2026</span>
+          <div>
+            <h3>Stockout Forecaster</h3>
+            <p>Explainable forecasting SaaS for small retailers.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact-section reveal" id="contact">
+      <p class="eyebrow">Contact</p>
+      <h2>Let’s build something useful.</h2>
+      <p>
+        I’m open to internships, junior roles, data projects, product engineering work,
+        and practical software opportunities.
+      </p>
+
+      <div class="hero-actions contact-actions">
+        <a href="mailto:YOUR-EMAIL-HERE" class="btn primary">Email Me</a>
+        <a href="https://github.com/YOUR-GITHUB-USERNAME" class="btn secondary" target="_blank">
+          GitHub
+        </a>
+        <a href="https://www.linkedin.com/in/YOUR-LINKEDIN" class="btn secondary" target="_blank">
+          LinkedIn
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>© <span id="year"></span> Jeremy Wanjohi. Built with GitHub Pages.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
