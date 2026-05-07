@@ -4,10 +4,11 @@ year.textContent = new Date().getFullYear();
 const themeToggle = document.getElementById("themeToggle");
 
 themeToggle.addEventListener("click", () => {
-  document.body.classList.toggle("light");
+  // Toggle the 'dark' class instead of 'light'
+  document.body.classList.toggle("dark");
 
-  const isLight = document.body.classList.contains("light");
-  themeToggle.textContent = isLight ? "Light" : "Dark";
+  const isDark = document.body.classList.contains("dark");
+  themeToggle.textContent = isDark ? "Light" : "Dark";
 });
 
 const revealElements = document.querySelectorAll(".reveal");
