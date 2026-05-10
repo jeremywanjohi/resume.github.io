@@ -1,17 +1,25 @@
 const year = document.getElementById("year");
-year.textContent = new Date().getFullYear();
-
 const themeToggle = document.getElementById("themeToggle");
+const revealElements = document.querySelectorAll(".reveal");
+
+if (year) {
+  year.textContent = new Date().getFullYear();
+}
+
+const savedTheme = localStorage.getItem("portfolio-theme");
+
+if (savedTheme === "light") {
+  document.body.classList.add("light");
+  themeToggle.textContent = "Light";
+}
 
 themeToggle.addEventListener("click", () => {
-  // Toggle the 'dark' class instead of 'light'
-  document.body.classList.toggle("dark");
+  document.body.classList.toggle("light");
 
-  const isDark = document.body.classList.contains("dark");
-  themeToggle.textContent = isDark ? "Light" : "Dark";
+  const isLight = document.body.classList.contains("light");
+  themeToggle.textContent = isLight ? "Light" : "Dark";
+  localStorage.setItem("portfolio-theme", isLight ? "light" : "dark");
 });
-
-const revealElements = document.querySelectorAll(".reveal");
 
 const revealObserver = new IntersectionObserver(
   (entries) => {
