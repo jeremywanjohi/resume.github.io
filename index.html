@@ -1,501 +1,1290 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jeremy Wanjohi — Software Engineer, Nairobi</title>
+  <meta name="description" content="Jeremy Wanjohi builds practical software — frontend products, backend systems, ML pipelines, and dashboards. Based in Nairobi." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-  <title>Jeremy Wanjohi | Software, Data & Product Systems</title>
+    /* ── LIGHT TOKENS ── */
+    :root {
+      --bg:           #ffffff;
+      --bg-soft:      #f9f9f7;
+      --bg-muted:     #f3f2ee;
+      --surface:      #ffffff;
+      --surface-alt:  #f9f9f7;
+      --text:         #0a0a0a;
+      --text-2:       #3d3d3d;
+      --text-3:       #6b6b6b;
+      --text-4:       #b0b0b0;
+      --border:       #e2e0d9;
+      --border-soft:  #eeede8;
+      --green:        #1a7a4a;
+      --green-dark:   #0d5c34;
+      --green-light:  #e8f5ee;
+      --green-glow:   rgba(26,122,74,0.12);
+      --green-accent: #00c864;
+      --header-bg:    rgba(255,255,255,0.88);
+      --shadow:       0 4px 24px rgba(0,0,0,0.07);
+      --dot-color:    rgba(0,0,0,0.12);
+      --mono-bg:      #f3f2ee;
+      --mono-text:    #1a7a4a;
+      --mono-comment: #b0b0b0;
+      --mono-str:     #0d5c34;
+      --mono-kw:      #0a0a0a;
+    }
 
-  <meta
-    name="description"
-    content="Portfolio of Jeremy Wanjohi — Computer Science student building software products, data dashboards, backend systems, and applied machine learning projects."
-  />
+    /* ── DARK TOKENS ── */
+    [data-theme="dark"] {
+      --bg:           #0d0d0d;
+      --bg-soft:      #111111;
+      --bg-muted:     #161616;
+      --surface:      #181818;
+      --surface-alt:  #1e1e1e;
+      --text:         #f0f0ec;
+      --text-2:       #d0d0c8;
+      --text-3:       #8a8a80;
+      --text-4:       #444440;
+      --border:       #2a2a26;
+      --border-soft:  #222220;
+      --green:        #2ecc76;
+      --green-dark:   #1a9954;
+      --green-light:  rgba(46,204,118,0.08);
+      --green-glow:   rgba(46,204,118,0.15);
+      --green-accent: #2ecc76;
+      --header-bg:    rgba(13,13,13,0.88);
+      --shadow:       0 4px 24px rgba(0,0,0,0.4);
+      --dot-color:    rgba(255,255,255,0.07);
+      --mono-bg:      #161616;
+      --mono-text:    #2ecc76;
+      --mono-comment: #444440;
+      --mono-str:     #74e49a;
+      --mono-kw:      #f0f0ec;
+    }
 
-  <link rel="stylesheet" href="style.css" />
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      font-size: 16px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      transition: background 0.3s ease, color 0.3s ease;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    /* ── HEADER ── */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--header-bg);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+      animation: fadeIn 0.6s ease both;
+      transition: background 0.3s ease, border-color 0.3s ease;
+    }
+
+    .header-inner {
+      max-width: 1160px;
+      margin: 0 auto;
+      padding: 0 32px;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-size: 15px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: var(--text);
+    }
+
+    nav { display: flex; gap: 28px; align-items: center; }
+
+    nav a {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-3);
+      transition: color 0.2s;
+    }
+    nav a:hover { color: var(--green); }
+
+    .nav-cta {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--bg) !important;
+      background: var(--text);
+      padding: 8px 18px;
+      border-radius: 999px;
+      transition: background 0.2s, color 0.2s !important;
+    }
+    .nav-cta:hover { background: var(--green) !important; color: #fff !important; }
+
+    /* ── THEME TOGGLE ── */
+    .theme-btn {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--text-3);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s;
+      flex-shrink: 0;
+    }
+    .theme-btn:hover { border-color: var(--green); color: var(--green); }
+    .theme-btn svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; }
+
+    .icon-moon { display: block; }
+    .icon-sun  { display: none; }
+    [data-theme="dark"] .icon-moon { display: none; }
+    [data-theme="dark"] .icon-sun  { display: block; }
+
+    /* ── WRAPPER ── */
+    .wrap { max-width: 1160px; margin: 0 auto; padding: 0 32px; }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100svh;
+      display: flex;
+      align-items: center;
+      border-bottom: 1px solid var(--border);
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* dot-grid canvas sits behind everything */
+    #hero-canvas {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .hero-wrap {
+      max-width: 1160px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 120px 32px 100px;
+      display: grid;
+      grid-template-columns: 1fr 380px;
+      gap: 80px;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* social rail */
+    .hero-socials {
+      position: absolute;
+      left: 28px;
+      top: 50%;
+      transform: translateY(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 18px;
+      z-index: 1;
+      animation: fadeIn 0.8s 0.9s ease both;
+    }
+
+    .hero-socials::after {
+      content: '';
+      display: block;
+      width: 1px;
+      height: 60px;
+      background: var(--border);
+      margin-top: 6px;
+    }
+
+    .social-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: 1px solid var(--border);
+      color: var(--text-3);
+      transition: all 0.2s;
+    }
+    .social-icon:hover { border-color: var(--green); color: var(--green); background: var(--green-light); }
+    .social-icon svg { width: 15px; height: 15px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+    /* hero text */
+    .hero-greeting {
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--text-3);
+      margin-bottom: 18px;
+      animation: fadeUp 0.7s 0.15s cubic-bezier(0.22,1,0.36,1) both;
+    }
+    .hero-greeting em { font-style: normal; color: var(--text); font-weight: 600; }
+
+    h1 {
+      font-size: clamp(2.6rem, 4.5vw, 4.2rem);
+      font-weight: 800;
+      line-height: 1.08;
+      letter-spacing: -0.035em;
+      color: var(--text);
+      margin-bottom: 8px;
+      animation: fadeUp 0.8s 0.28s cubic-bezier(0.22,1,0.36,1) both;
+    }
+
+    h1 em {
+      font-style: italic;
+      color: var(--green);
+      font-weight: 800;
+      position: relative;
+      white-space: nowrap;
+    }
+
+    h1 em::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: -4px;
+      width: 100%;
+      height: 6px;
+      background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 8' preserveAspectRatio='none'%3E%3Cpath d='M2,6 C40,1 80,7 120,3 C160,0 180,5 198,4' stroke='%231a7a4a' stroke-width='2.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E") center/100% 100% no-repeat;
+      opacity: 0.7;
+    }
+
+    .hero-location {
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--text-3);
+      letter-spacing: 0.04em;
+      margin-bottom: 28px;
+      animation: fadeUp 0.7s 0.38s cubic-bezier(0.22,1,0.36,1) both;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .hero-location::before {
+      content: '';
+      display: inline-block;
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--green);
+      box-shadow: 0 0 0 0 var(--green);
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%  { box-shadow: 0 0 0 0 rgba(26,122,74,0.5); }
+      70% { box-shadow: 0 0 0 7px rgba(26,122,74,0); }
+      100%{ box-shadow: 0 0 0 0 rgba(26,122,74,0); }
+    }
+
+    [data-theme="dark"] .hero-location::before {
+      animation: pulse-dark 2s ease-in-out infinite;
+    }
+    @keyframes pulse-dark {
+      0%  { box-shadow: 0 0 0 0 rgba(46,204,118,0.5); }
+      70% { box-shadow: 0 0 0 7px rgba(46,204,118,0); }
+      100%{ box-shadow: 0 0 0 0 rgba(46,204,118,0); }
+    }
+
+    .hero-sub {
+      font-size: 0.975rem;
+      font-weight: 400;
+      color: var(--text-3);
+      line-height: 1.85;
+      max-width: 440px;
+      margin-bottom: 40px;
+      animation: fadeUp 0.7s 0.44s cubic-bezier(0.22,1,0.36,1) both;
+    }
+
+    .hero-btns {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      animation: fadeUp 0.7s 0.56s cubic-bezier(0.22,1,0.36,1) both;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'Poppins', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      padding: 13px 24px;
+      border-radius: 999px;
+      cursor: pointer;
+      transition: all 0.22s;
+      border: none;
+    }
+    .btn-black { background: var(--text); color: var(--bg); }
+    .btn-black:hover { background: var(--green); color: #fff; }
+    .btn-outline { background: transparent; color: var(--text); border: 1.5px solid var(--border); }
+    .btn-outline:hover { border-color: var(--text); }
+
+    /* ── PHOTO / TERMINAL GRAPHIC ── */
+    .hero-photo-wrap {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      animation: scaleIn 0.9s 0.5s cubic-bezier(0.22,1,0.36,1) both;
+    }
+
+    /* animated terminal card */
+    .terminal {
+      width: 360px;
+      background: var(--mono-bg);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: background 0.3s, border-color 0.3s;
+    }
+
+    .terminal-bar {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--border);
+      background: var(--surface-alt);
+    }
+
+    .term-dot {
+      width: 11px;
+      height: 11px;
+      border-radius: 50%;
+    }
+    .term-dot.red    { background: #ff5f57; }
+    .term-dot.yellow { background: #febc2e; }
+    .term-dot.green  { background: #28c840; }
+
+    .terminal-title {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      color: var(--text-3);
+      margin-left: 8px;
+    }
+
+    .terminal-body {
+      padding: 20px 18px 24px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12.5px;
+      line-height: 1.9;
+      min-height: 220px;
+    }
+
+    .t-comment { color: var(--mono-comment); }
+    .t-kw      { color: var(--mono-kw); font-weight: 500; }
+    .t-fn      { color: var(--mono-text); }
+    .t-str     { color: var(--mono-str); }
+    .t-num     { color: var(--green); }
+    .t-dim     { color: var(--text-4); }
+
+    /* cursor blink on last line */
+    .t-cursor::after {
+      content: '▋';
+      color: var(--green);
+      animation: blink 1.1s step-end infinite;
+    }
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+
+    /* typing animation for each line */
+    .t-line {
+      display: block;
+      overflow: hidden;
+      white-space: nowrap;
+      opacity: 0;
+      animation: typeIn 0.01s ease forwards;
+    }
+    .t-line:nth-child(1)  { animation-delay: 1.0s; }
+    .t-line:nth-child(2)  { animation-delay: 1.3s; }
+    .t-line:nth-child(3)  { animation-delay: 1.6s; }
+    .t-line:nth-child(4)  { animation-delay: 1.9s; }
+    .t-line:nth-child(5)  { animation-delay: 2.2s; }
+    .t-line:nth-child(6)  { animation-delay: 2.5s; }
+    .t-line:nth-child(7)  { animation-delay: 2.8s; }
+    .t-line:nth-child(8)  { animation-delay: 3.1s; }
+    .t-line:nth-child(9)  { animation-delay: 3.4s; }
+    .t-line:nth-child(10) { animation-delay: 3.7s; }
+    .t-line:nth-child(11) { animation-delay: 4.0s; }
+
+    @keyframes typeIn { to { opacity: 1; } }
+
+    /* ── SCROLL INDICATOR ── */
+    .scroll-down {
+      position: absolute;
+      bottom: 36px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      text-decoration: none;
+      color: var(--text-4);
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+      animation: fadeIn 1s 1.2s ease both;
+      z-index: 1;
+    }
+    .scroll-down:hover { color: var(--green); }
+
+    .scroll-arrow-icon {
+      width: 28px;
+      height: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      animation: arrowBounce 1.8s ease-in-out infinite;
+    }
+    .scroll-arrow-icon svg { width: 22px; height: 22px; stroke: currentColor; stroke-width: 2; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+
+    @keyframes arrowBounce {
+      0%,100% { transform: translateY(0); }
+      50%      { transform: translateY(6px); }
+    }
+
+    /* ── HIGHLIGHT UTILITY ── */
+    .hl {
+      background: linear-gradient(to bottom, transparent 40%, rgba(26,122,74,0.18) 40%);
+      border-radius: 2px;
+      padding: 0 2px;
+    }
+    [data-theme="dark"] .hl {
+      background: linear-gradient(to bottom, transparent 40%, rgba(46,204,118,0.2) 40%);
+    }
+    .hl-strong {
+      background: linear-gradient(to bottom, transparent 30%, rgba(26,122,74,0.22) 30%);
+      border-radius: 2px;
+      padding: 0 3px;
+    }
+    [data-theme="dark"] .hl-strong {
+      background: linear-gradient(to bottom, transparent 30%, rgba(46,204,118,0.25) 30%);
+    }
+
+    /* ── SECTION SHARED ── */
+    section { padding: 100px 0; }
+
+    .section-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--text-3);
+      margin-bottom: 16px;
+    }
+    .section-label::before {
+      content: '';
+      display: block;
+      width: 14px;
+      height: 1.5px;
+      background: var(--text-4);
+    }
+
+    h2 {
+      font-size: clamp(1.9rem, 3.2vw, 2.8rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.08;
+      color: var(--text);
+      margin-bottom: 14px;
+    }
+
+    .section-intro {
+      font-size: 1rem;
+      color: var(--text-3);
+      line-height: 1.75;
+      max-width: 560px;
+      margin-bottom: 56px;
+      font-weight: 400;
+    }
+
+    /* ── TICKER ── */
+    .ticker-wrap {
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      overflow: hidden;
+      padding: 13px 0;
+      background: var(--bg-muted);
+      transition: background 0.3s, border-color 0.3s;
+    }
+    .ticker-track {
+      display: flex;
+      gap: 48px;
+      animation: ticker 28s linear infinite;
+      white-space: nowrap;
+      width: max-content;
+    }
+    .ticker-item {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-3);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .ticker-item::after { content: '●'; color: var(--green); font-size: 7px; }
+    @keyframes ticker { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+
+    /* ── PROJECTS ── */
+    #projects { border-top: 1px solid var(--border); }
+
+    .projects-layout {
+      display: grid;
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      overflow: hidden;
+    }
+    .project-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background: var(--border);
+    }
+    .project-block {
+      background: var(--surface);
+      padding: 40px;
+      transition: background 0.2s;
+      position: relative;
+    }
+    .project-block:hover { background: var(--surface-alt); }
+    .project-block.featured-proj {
+      grid-column: span 2;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: start;
+    }
+    .proj-type {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-3);
+      margin-bottom: 12px;
+    }
+    .project-block h3 {
+      font-size: 1.3rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--text);
+      margin-bottom: 14px;
+      line-height: 1.2;
+    }
+    .project-block p {
+      font-size: 0.875rem;
+      color: var(--text-3);
+      line-height: 1.8;
+      margin-bottom: 20px;
+    }
+    .tag-row { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 20px; }
+    .tag {
+      font-size: 11px;
+      font-weight: 500;
+      padding: 4px 10px;
+      border-radius: 4px;
+      background: var(--bg-muted);
+      color: var(--text-2);
+      border: 1px solid var(--border);
+    }
+    .proj-metrics {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      margin-bottom: 24px;
+    }
+    .proj-metric {
+      background: var(--green-light);
+      border-radius: 10px;
+      padding: 14px 12px;
+      text-align: center;
+    }
+    .proj-metric strong {
+      display: block;
+      font-size: 1.25rem;
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      color: var(--green);
+    }
+    .proj-metric span {
+      font-size: 10px;
+      font-weight: 500;
+      color: var(--green);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      opacity: 0.7;
+    }
+    .proj-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text);
+      transition: gap 0.2s, color 0.2s;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 2px;
+    }
+    .proj-link:hover { gap: 10px; color: var(--green); border-color: var(--green); }
+    .proj-note {
+      font-size: 0.8rem;
+      color: var(--text-3);
+      font-style: italic;
+      margin-bottom: 20px;
+      line-height: 1.65;
+    }
+    .proj-number {
+      position: absolute;
+      top: 40px;
+      right: 40px;
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--border);
+      letter-spacing: 0.06em;
+    }
+
+    /* ── EXPERIENCE ── */
+    #experience { border-top: 1px solid var(--border); }
+    .exp-grid { display: grid; gap: 0; }
+    .exp-card {
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      gap: 48px;
+      padding: 40px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .exp-card:last-child { border-bottom: none; }
+    .exp-meta { padding-top: 4px; }
+    .exp-period { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-3); margin-bottom: 6px; }
+    .exp-company { font-size: 1rem; font-weight: 700; color: var(--text); margin-bottom: 2px; }
+    .exp-location { font-size: 12px; color: var(--text-3); }
+    .exp-body h3 { font-size: 1.05rem; font-weight: 600; color: var(--text); margin-bottom: 10px; letter-spacing: -0.01em; }
+    .exp-body p { font-size: 0.875rem; color: var(--text-3); line-height: 1.8; margin-bottom: 16px; }
+
+    /* ── SKILLS ── */
+    #skills { border-top: 1px solid var(--border); background: var(--bg-soft); transition: background 0.3s; }
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+    }
+    .skill-card { background: var(--surface); padding: 32px 28px; transition: background 0.2s; }
+    .skill-card:hover { background: var(--surface-alt); }
+    .skill-num { font-size: 11px; font-weight: 700; color: var(--border); margin-bottom: 20px; letter-spacing: 0.06em; }
+    .skill-card h3 { font-size: 0.95rem; font-weight: 700; color: var(--text); margin-bottom: 8px; }
+    .skill-card p { font-size: 0.8rem; color: var(--text-3); line-height: 1.75; }
+
+    /* ── TIMELINE ── */
+    #timeline { border-top: 1px solid var(--border); }
+    .timeline-list { position: relative; }
+    .timeline-list::before {
+      content: '';
+      position: absolute;
+      left: 100px; top: 0; bottom: 0;
+      width: 1px;
+      background: var(--border);
+    }
+    .tl-item {
+      display: grid;
+      grid-template-columns: 140px 1fr;
+      gap: 40px;
+      padding: 36px 0;
+      border-bottom: 1px solid var(--border);
+      position: relative;
+    }
+    .tl-item:last-child { border-bottom: none; }
+    .tl-year {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      color: var(--text-3);
+      text-align: right;
+      padding-right: 44px;
+      padding-top: 4px;
+      white-space: nowrap;
+    }
+    .tl-dot {
+      position: absolute;
+      left: 94px; top: 40px;
+      width: 12px; height: 12px;
+      border-radius: 50%;
+      background: var(--bg);
+      border: 2px solid var(--green);
+      transition: background 0.3s;
+    }
+    .tl-body h3 { font-size: 1rem; font-weight: 700; color: var(--text); margin-bottom: 6px; }
+    .tl-body p { font-size: 0.85rem; color: var(--text-3); line-height: 1.75; }
+
+    /* ── CONTACT ── */
+    #contact { border-top: 1px solid var(--border); background: var(--text); transition: background 0.3s; }
+    .contact-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+    #contact .section-label { color: rgba(255,255,255,0.3); }
+    #contact .section-label::before { background: rgba(255,255,255,0.15); }
+    #contact h2 { color: var(--bg); }
+    .contact-sub { font-size: 0.95rem; color: rgba(255,255,255,0.4); line-height: 1.8; margin-top: 16px; }
+    .contact-aside { font-size: 0.8rem; color: rgba(255,255,255,0.2); margin-top: 24px; font-style: italic; line-height: 1.6; }
+    .contact-links { display: flex; flex-direction: column; gap: 12px; }
+    .contact-link-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 24px;
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 14px;
+      transition: all 0.2s;
+    }
+    .contact-link-item:hover { border-color: var(--green); background: var(--green-glow); }
+    .contact-link-label { font-size: 13px; font-weight: 600; color: var(--bg); }
+    .contact-link-val { font-size: 12px; color: rgba(255,255,255,0.35); }
+    .contact-arrow { font-size: 16px; color: rgba(255,255,255,0.3); }
+    .contact-link-item:hover .contact-arrow { color: var(--green-accent); }
+
+    /* dark mode: contact uses surface not text */
+    [data-theme="dark"] #contact { background: var(--surface); }
+    [data-theme="dark"] #contact h2 { color: var(--text); }
+    [data-theme="dark"] .contact-link-label { color: var(--text); }
+
+    /* ── FOOTER ── */
+    footer { background: var(--text); border-top: 1px solid rgba(255,255,255,0.05); padding: 28px 0; transition: background 0.3s; }
+    [data-theme="dark"] footer { background: var(--surface); }
+    .footer-inner { display: flex; align-items: center; justify-content: space-between; }
+    .footer-text { font-size: 12px; color: rgba(255,255,255,0.25); font-weight: 400; }
+    .footer-made { font-size: 12px; color: rgba(255,255,255,0.2); font-style: italic; }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp  { from{opacity:0;transform:translateY(28px)} to{opacity:1;transform:translateY(0)} }
+    @keyframes fadeIn  { from{opacity:0} to{opacity:1} }
+    @keyframes scaleIn { from{opacity:0;transform:scale(0.9)} to{opacity:1;transform:scale(1)} }
+
+    /* scroll-reveal */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.75s cubic-bezier(0.22,1,0.36,1), transform 0.75s cubic-bezier(0.22,1,0.36,1);
+    }
+    .reveal.visible { opacity:1; transform:translateY(0); }
+    .reveal-children > * {
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity 0.6s cubic-bezier(0.22,1,0.36,1), transform 0.6s cubic-bezier(0.22,1,0.36,1);
+    }
+    .reveal-children.visible > *:nth-child(1){opacity:1;transform:none;transition-delay:0s}
+    .reveal-children.visible > *:nth-child(2){opacity:1;transform:none;transition-delay:.09s}
+    .reveal-children.visible > *:nth-child(3){opacity:1;transform:none;transition-delay:.18s}
+    .reveal-children.visible > *:nth-child(4){opacity:1;transform:none;transition-delay:.27s}
+    .reveal-children.visible > *:nth-child(5){opacity:1;transform:none;transition-delay:.36s}
+    .reveal-children.visible > *:nth-child(6){opacity:1;transform:none;transition-delay:.45s}
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .hero-wrap { grid-template-columns: 1fr; gap: 48px; }
+      .hero-photo-wrap { order: -1; }
+      .terminal { width: 100%; max-width: 340px; }
+      .hero-socials { display: none; }
+      h1 { font-size: 2.8rem; }
+      .project-block.featured-proj { grid-column:span 1; grid-template-columns:1fr; gap:24px; }
+      .project-row { grid-template-columns: 1fr; }
+      .skills-grid { grid-template-columns: repeat(2,1fr); }
+      .exp-card { grid-template-columns: 1fr; gap: 16px; }
+      .contact-inner { grid-template-columns: 1fr; gap: 48px; }
+    }
+    @media (max-width: 600px) {
+      .wrap { padding: 0 20px; }
+      .header-inner { padding: 0 20px; }
+      nav { gap: 12px; }
+      nav a:not(.nav-cta):not(.theme-btn) { display: none; }
+      h1 { font-size: 2.3rem; }
+      h2 { font-size: 1.75rem; }
+      .hero-wrap { padding: 100px 20px 90px; }
+      .skills-grid { grid-template-columns: 1fr 1fr; }
+      section { padding: 64px 0; }
+      .project-block { padding: 28px; }
+    }
+  </style>
 </head>
-
 <body>
+
+  <!-- HEADER -->
   <header class="site-header">
-    <a href="#" class="logo">JW</a>
-
-    <nav class="nav">
-      <a href="#projects">Projects</a>
-      <a href="#experience">Experience</a>
-      <a href="#skills">Skills</a>
-      <a href="#timeline">Timeline</a>
-      <a href="#contact">Contact</a>
-    </nav>
-
-    <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
-      Dark
-    </button>
+    <div class="header-inner">
+      <div class="logo">Jeremy Wanjohi</div>
+      <nav>
+        <a href="#projects">Work</a>
+        <a href="#experience">Experience</a>
+        <a href="#skills">Skills</a>
+        <a href="#contact" class="nav-cta">Say hello</a>
+        <button class="theme-btn" id="themeToggle" aria-label="Toggle dark mode">
+          <svg class="icon-moon" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          <svg class="icon-sun"  viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+        </button>
+      </nav>
+    </div>
   </header>
 
-  <main>
-    <section class="hero">
-      <div class="hero-content reveal">
-        <p class="eyebrow">Jeremy Wanjohi</p>
+  <!-- HERO -->
+  <section class="hero">
+    <canvas id="hero-canvas" aria-hidden="true"></canvas>
 
-        <h1>Software, data, and product systems built around real problems.</h1>
+    <div class="hero-socials">
+      <a href="https://linkedin.com/in/YOUR-LINKEDIN" target="_blank" rel="noreferrer" class="social-icon" aria-label="LinkedIn">
+        <svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><line x1="2" y1="9" x2="6" y2="9"/><line x1="2" y1="9" x2="2" y2="21"/><line x1="6" y1="9" x2="6" y2="21"/><line x1="2" y1="21" x2="6" y2="21"/><circle cx="4" cy="4" r="2"/></svg>
+      </a>
+      <a href="https://github.com/jeremywanjohi" target="_blank" rel="noreferrer" class="social-icon" aria-label="GitHub">
+        <svg viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+      </a>
+      <a href="mailto:jeremykwanjohi@gmail.com" class="social-icon" aria-label="Email">
+        <svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="22,6 12,13 2,6"/></svg>
+      </a>
+    </div>
 
-        <p class="hero-text">
-          Final-year Informatics & Computer Science student at Strathmore University.
-          I build practical systems across frontend engineering, backend APIs, dashboards,
-          machine learning, and real-world data pipelines.
+    <div class="hero-wrap">
+      <div class="hero-text">
+        <p class="hero-greeting">Hi, I'm <em>Jeremy</em> 👋</p>
+        <h1>I build software<br>that does <em><span class="hl-strong">useful</span></em><br>things.</h1>
+        <p class="hero-location">Nairobi, Kenya</p>
+        <p class="hero-sub">
+          CS student at Strathmore University — spending most of my time making <span class="hl">frontends that don't annoy people</span>, backends that don't fall over, and the occasional <span class="hl">ML system that actually works</span>.
         </p>
-
-        <div class="hero-actions">
-          <a href="#projects" class="btn primary">View Projects</a>
-          <a href="https://github.com/jeremywanjohi" class="btn secondary" target="_blank" rel="noreferrer">
-            GitHub
-          </a>
-          <a href="mailto:jeremykwanjohi@gmail.com" class="btn secondary">
-            Email
-          </a>
-        </div>
-
-        <div class="hero-stats">
-          <div>
-            <strong>72.49%</strong>
-            <span>Current average</span>
-          </div>
-          <div>
-            <strong>2×</strong>
-            <span>Dean’s List</span>
-          </div>
-          <div>
-            <strong>2026</strong>
-            <span>Expected graduation</span>
-          </div>
+        <div class="hero-btns">
+          <a href="#projects" class="btn btn-black">See what I've built</a>
+          <a href="mailto:jeremykwanjohi@gmail.com" class="btn btn-outline">Let's talk</a>
         </div>
       </div>
 
-      <div class="hero-visual reveal">
-        <div class="system-card main-card">
-          <span class="card-label">Featured System</span>
-          <h2>Traffic RL</h2>
-          <p>
-            Adaptive traffic signal control using SUMO, live Google Maps traffic data,
-            a Deep Q-Network policy service, and KPI dashboards.
-          </p>
+      <!-- animated terminal graphic -->
+      <div class="hero-photo-wrap">
+        <div class="terminal">
+          <div class="terminal-bar">
+            <span class="term-dot red"></span>
+            <span class="term-dot yellow"></span>
+            <span class="term-dot green"></span>
+            <span class="terminal-title">jeremy@nairobi ~ </span>
+          </div>
+          <div class="terminal-body">
+            <span class="t-line"><span class="t-comment"># traffic_rl / agent.py</span></span>
+            <span class="t-line">&nbsp;</span>
+            <span class="t-line"><span class="t-kw">class</span> <span class="t-fn">DQNAgent</span>:</span>
+            <span class="t-line">&nbsp;&nbsp;<span class="t-kw">def</span> <span class="t-fn">act</span>(self, state):</span>
+            <span class="t-line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="t-kw">if</span> random() &lt; self.epsilon:</span>
+            <span class="t-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="t-kw">return</span> <span class="t-fn">explore</span>()</span>
+            <span class="t-line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="t-kw">return</span> <span class="t-fn">exploit</span>(state)</span>
+            <span class="t-line">&nbsp;</span>
+            <span class="t-line">&nbsp;&nbsp;<span class="t-kw">def</span> <span class="t-fn">learn</span>(self, batch):</span>
+            <span class="t-line">&nbsp;&nbsp;&nbsp;&nbsp;loss = <span class="t-num">0.0031</span> <span class="t-comment"># improving</span></span>
+            <span class="t-line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="t-dim">▋</span><span class="t-cursor"></span></span>
+          </div>
+        </div>
+      </div>
+    </div>
 
-          <div class="metric-grid">
-            <div>
-              <strong>+31%</strong>
-              <span>Average speed</span>
+    <a href="#projects" class="scroll-down" aria-label="Scroll to projects">
+      <div class="scroll-arrow-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      scroll
+    </a>
+  </section>
+
+  <!-- TICKER -->
+  <div class="ticker-wrap">
+    <div class="ticker-track">
+      <span class="ticker-item">React</span>
+      <span class="ticker-item">FastAPI</span>
+      <span class="ticker-item">Python</span>
+      <span class="ticker-item">Deep Q-Network</span>
+      <span class="ticker-item">Node.js</span>
+      <span class="ticker-item">PostgreSQL</span>
+      <span class="ticker-item">Azure</span>
+      <span class="ticker-item">React Native</span>
+      <span class="ticker-item">TypeScript</span>
+      <span class="ticker-item">SUMO Simulation</span>
+      <span class="ticker-item">Prisma</span>
+      <span class="ticker-item">TensorFlow</span>
+      <span class="ticker-item">systemd</span>
+      <span class="ticker-item">React</span>
+      <span class="ticker-item">FastAPI</span>
+      <span class="ticker-item">Python</span>
+      <span class="ticker-item">Deep Q-Network</span>
+      <span class="ticker-item">Node.js</span>
+      <span class="ticker-item">PostgreSQL</span>
+      <span class="ticker-item">Azure</span>
+      <span class="ticker-item">React Native</span>
+      <span class="ticker-item">TypeScript</span>
+      <span class="ticker-item">SUMO Simulation</span>
+      <span class="ticker-item">Prisma</span>
+      <span class="ticker-item">TensorFlow</span>
+      <span class="ticker-item">systemd</span>
+    </div>
+  </div>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <div class="wrap">
+      <div class="section-label reveal">Selected work</div>
+      <h2 class="reveal">Things I've actually built.</h2>
+      <p class="section-intro reveal">A mix of real problems, side projects, and coursework that turned into something worth showing.</p>
+
+      <div class="projects-layout reveal-children">
+        <div class="project-block featured-proj">
+          <div>
+            <div class="proj-type">AI · Simulation · Data Systems</div>
+            <h3>Traffic RL — Nairobi</h3>
+            <div class="proj-metrics">
+              <div class="proj-metric"><strong>+31%</strong><span>Avg speed</span></div>
+              <div class="proj-metric"><strong>−72%</strong><span>Wait time</span></div>
+              <div class="proj-metric"><strong>−50%</strong><span>Queue length</span></div>
             </div>
-            <div>
-              <strong>-72%</strong>
-              <span>Waiting time</span>
+            <a href="https://github.com/jeremywanjohi/traffic_rl" target="_blank" rel="noreferrer" class="proj-link">View on GitHub →</a>
+          </div>
+          <div>
+            <p>Nairobi traffic is chaotic. I built an adaptive traffic signal controller using a Deep Q-Network, SUMO simulation, live Google Maps data, and a React dashboard — so you can actually see the RL agent beating the fixed-cycle baseline in real time.</p>
+            <div class="tag-row">
+              <span class="tag">Python</span><span class="tag">SUMO</span><span class="tag">DQN</span>
+              <span class="tag">FastAPI</span><span class="tag">React</span><span class="tag">Azure VM</span>
             </div>
-            <div>
-              <strong>-50%</strong>
-              <span>Queue length</span>
-            </div>
-            <div>
-              <strong>5s</strong>
-              <span>Decision loop</span>
-            </div>
+            <p class="proj-note">Probably the project I'm <span class="hl">most proud of</span> — took a real city problem and built something that measurably improves it.</p>
           </div>
         </div>
 
-        <div class="floating-chip chip-one">EcoLocator</div>
-        <div class="floating-chip chip-two">BuuPass</div>
-      </div>
-    </section>
-
-    <section class="section intro-strip reveal">
-      <p>
-        I’m strongest where <strong>software engineering</strong>,
-        <strong>data systems</strong>, <strong>dashboards</strong>, and
-        <strong>product thinking</strong> meet.
-      </p>
-    </section>
-
-    <section class="section" id="projects">
-      <div class="section-heading reveal">
-        <p class="eyebrow">Selected Work</p>
-        <h2>Projects from EcoLocator onwards</h2>
-        <p>
-          A focused collection of projects showing mobile development, backend APIs,
-          data pipelines, applied AI, dashboards, and architecture thinking.
-        </p>
-      </div>
-
-      <div class="projects-grid">
-        <article class="project-card featured reveal">
-          <div class="project-top">
-            <p class="project-type">AI / Simulation / Data Systems</p>
-            <h3>Traffic Management & Optimisation System</h3>
-          </div>
-
-          <p>
-            Built an adaptive traffic signal optimisation system for Nairobi using a
-            Deep Q-Network controller, SUMO simulation, FastAPI services, live Google Maps
-            data, and a React dashboard for comparing RL against a fixed-cycle baseline.
-          </p>
-
-          <div class="stack">
-            <span>Python</span>
-            <span>SUMO</span>
-            <span>Deep Q-Network</span>
-            <span>FastAPI</span>
-            <span>React</span>
-            <span>Recharts</span>
-            <span>Azure VM</span>
-            <span>systemd</span>
-          </div>
-
-          <div class="project-metrics">
-            <div>
-              <strong>31%</strong>
-              <span>speed improvement</span>
-            </div>
-            <div>
-              <strong>72%</strong>
-              <span>wait reduction</span>
-            </div>
-            <div>
-              <strong>50%</strong>
-              <span>queue reduction</span>
-            </div>
-          </div>
-
-          <div class="project-note">
-            My strongest proof-of-work project: live data ingestion, simulation,
-            policy inference, KPI logging, deployment, and visual analytics.
-          </div>
-
-          <a href="https://github.com/jeremywanjohi/traffic_rl" target="_blank" rel="noreferrer" class="project-link">
-            View repository →
-          </a>
-        </article>
-
-        <article class="project-card reveal">
-          <div class="project-top">
-            <p class="project-type">Mobile App / Sustainability</p>
+        <div class="project-row">
+          <div class="project-block">
+            <span class="proj-number">02</span>
+            <div class="proj-type">Mobile · Sustainability</div>
             <h3>EcoLocator</h3>
+            <p>Find recycling centres near you in Nairobi, log your drop-offs, earn points. Built the whole backend — APIs, schema, reward logic.</p>
+            <div class="tag-row"><span class="tag">React Native</span><span class="tag">Node.js</span><span class="tag">MySQL</span></div>
+            <a href="https://github.com/jeremywanjohi/ecolocator" target="_blank" rel="noreferrer" class="proj-link">GitHub →</a>
           </div>
-
-          <p>
-            A recycling rewards mobile application that helps users find nearby recycling
-            centres in Nairobi, track recycling activity, and earn rewards.
-          </p>
-
-          <div class="stack">
-            <span>React Native</span>
-            <span>Node.js</span>
-            <span>Express</span>
-            <span>MySQL</span>
-            <span>REST APIs</span>
-          </div>
-
-          <div class="project-note">
-            Designed backend APIs, database structures, recycling centre records,
-            recycling activity tracking, and reward logic.
-          </div>
-
-          <a href="https://github.com/jeremywanjohi/ecolocator" target="_blank" rel="noreferrer" class="project-link">
-            View repository →
-          </a>
-        </article>
-
-        <article class="project-card reveal">
-          <div class="project-top">
-            <p class="project-type">SaaS / Business Analytics</p>
+          <div class="project-block">
+            <span class="proj-number">03</span>
+            <div class="proj-type">SaaS · Analytics</div>
             <h3>Stockout Forecaster</h3>
+            <p>A simple, explainable stockout prediction tool for small Kenyan retailers. <span class="hl">No AI hype — just clear formulas</span> and honest reorder advice.</p>
+            <div class="tag-row"><span class="tag">Next.js</span><span class="tag">TypeScript</span><span class="tag">PostgreSQL</span></div>
+            <a href="https://github.com/jeremywanjohi/stockout-forecaster" target="_blank" rel="noreferrer" class="proj-link">GitHub →</a>
           </div>
+        </div>
 
-          <p>
-            A deterministic forecasting SaaS MVP for small retailers to predict when
-            products may run out and estimate reorder quantities using explainable formulas.
-          </p>
-
-          <div class="stack">
-            <span>Next.js</span>
-            <span>TypeScript</span>
-            <span>Prisma</span>
-            <span>PostgreSQL</span>
-            <span>Vitest</span>
+        <div class="project-row">
+          <div class="project-block">
+            <span class="proj-number">04</span>
+            <div class="proj-type">Cloud Architecture · FinTech</div>
+            <h3>Mobile Payments Architecture</h3>
+            <p>Designed the cloud architecture for a mobile payments app — auth flows, transaction routing, merchant payments, admin dashboards.</p>
+            <div class="tag-row"><span class="tag">System Design</span><span class="tag">API Gateway</span><span class="tag">Cloud</span></div>
+            <a href="#contact" class="proj-link">Ask me about it →</a>
           </div>
-
-          <div class="project-note">
-            Built around practical retail decision-making: no AI chatbot, no full ERP,
-            just clear stockout forecasts and reorder guidance.
+          <div class="project-block">
+            <span class="proj-number">05</span>
+            <div class="proj-type">IoT · Agriculture</div>
+            <h3>Greenhouse Monitor</h3>
+            <p>Sensor-driven greenhouse monitoring — temperature, humidity, soil moisture. Where code meets soil.</p>
+            <div class="tag-row"><span class="tag">IoT</span><span class="tag">Sensors</span><span class="tag">Monitoring</span></div>
+            <a href="#contact" class="proj-link">Ask me about it →</a>
           </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-          <a href="https://github.com/jeremywanjohi/stockout-forecaster" target="_blank" rel="noreferrer" class="project-link">
-            View repository →
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <div class="wrap">
+      <div class="section-label reveal">Experience</div>
+      <h2 class="reveal">Where I've been.</h2>
+      <p class="section-intro reveal">Three internships, two companies, lots of things that shipped.</p>
+      <div class="exp-grid">
+        <div class="exp-card reveal">
+          <div class="exp-meta">
+            <div class="exp-period">Jan – Mar 2025</div>
+            <div class="exp-company">BuuPass</div>
+            <div class="exp-location">Nairobi</div>
+          </div>
+          <div class="exp-body">
+            <h3>Frontend Engineering Intern</h3>
+            <p>Rebuilt customer support dashboard workflows in React. <span class="hl">Talked to the support team, found out what actually slowed them down, then fixed it.</span> Also upgraded a pile of stale dependencies.</p>
+            <div class="tag-row"><span class="tag">React</span><span class="tag">Jira</span><span class="tag">Git</span></div>
+          </div>
+        </div>
+        <div class="exp-card reveal">
+          <div class="exp-meta">
+            <div class="exp-period">Jul – Aug 2019</div>
+            <div class="exp-company">BuuPass</div>
+            <div class="exp-location">Nairobi</div>
+          </div>
+          <div class="exp-body">
+            <h3>UI/UX Design Intern</h3>
+            <p>Designed a flight-ticketing prototype and poked holes in the existing booking flow. Found more usability issues than expected.</p>
+            <div class="tag-row"><span class="tag">UI/UX</span><span class="tag">Prototyping</span></div>
+          </div>
+        </div>
+        <div class="exp-card reveal">
+          <div class="exp-meta">
+            <div class="exp-period">Jul 2018</div>
+            <div class="exp-company">Safaricom PLC</div>
+            <div class="exp-location">Nairobi</div>
+          </div>
+          <div class="exp-body">
+            <h3>Innovation Hub Intern</h3>
+            <p>Gathered user feedback for early Bonga app features. Mostly listened, took notes, and tried to turn vague opinions into something actionable.</p>
+            <div class="tag-row"><span class="tag">User Research</span><span class="tag">Product</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <div class="wrap">
+      <div class="section-label reveal">Capabilities</div>
+      <h2 class="reveal">What I can do.</h2>
+      <p class="section-intro reveal">The main areas I work in. Still learning all of them.</p>
+      <div class="skills-grid reveal-children">
+        <div class="skill-card"><div class="skill-num">01</div><h3>Frontend</h3><p>React, React Native, Angular. Making interfaces that feel right and don't break on mobile.</p></div>
+        <div class="skill-card"><div class="skill-num">02</div><h3>Backend APIs</h3><p>Node/Express, FastAPI. REST endpoints, auth flows, keeping things from catching fire.</p></div>
+        <div class="skill-card"><div class="skill-num">03</div><h3>Data & ML</h3><p>Python, Pandas, TensorFlow. Reinforcement learning when the problem calls for it.</p></div>
+        <div class="skill-card"><div class="skill-num">04</div><h3>Databases</h3><p>PostgreSQL, MySQL. Schema design, relational modelling, not losing data.</p></div>
+        <div class="skill-card"><div class="skill-num">05</div><h3>Deployment</h3><p>Linux, Azure VMs, systemd. Getting things running and keeping them up.</p></div>
+        <div class="skill-card"><div class="skill-num">06</div><h3>Product thinking</h3><p>Framing the actual problem before writing code. MVPs that solve one thing well.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TIMELINE -->
+  <section id="timeline">
+    <div class="wrap">
+      <div class="section-label reveal">Timeline</div>
+      <h2 class="reveal">How I got here.</h2>
+      <div class="timeline-list">
+        <div class="tl-item reveal"><div class="tl-year">2018–19</div><div class="tl-dot"></div><div class="tl-body"><h3>First internships</h3><p>Safaricom innovation hub, then UI/UX at BuuPass. Mostly listening and learning how products get made.</p></div></div>
+        <div class="tl-item reveal"><div class="tl-year">2024</div><div class="tl-dot"></div><div class="tl-body"><h3>EcoLocator</h3><p>First full-stack mobile app. React Native + Node/MySQL. Made recycling feel slightly less inconvenient.</p></div></div>
+        <div class="tl-item reveal"><div class="tl-year">2024</div><div class="tl-dot"></div><div class="tl-body"><h3>Cloud payments architecture</h3><p>Designed a mobile payments system from scratch — auth, transactions, notifications, the works.</p></div></div>
+        <div class="tl-item reveal"><div class="tl-year">2025</div><div class="tl-dot"></div><div class="tl-body"><h3>BuuPass (again)</h3><p>Back for a proper engineering internship. Built real things, talked to real users, shipped real code.</p></div></div>
+        <div class="tl-item reveal"><div class="tl-year">2025</div><div class="tl-dot"></div><div class="tl-body"><h3>Traffic RL</h3><p>The big one. RL agent, SUMO simulation, live data, Azure deployment. Took Nairobi's traffic chaos as a challenge.</p></div></div>
+        <div class="tl-item reveal"><div class="tl-year">2026</div><div class="tl-dot"></div><div class="tl-body"><h3>Stockout Forecaster</h3><p>SaaS for small retailers. Explainable, honest, no buzzwords. Next.js + PostgreSQL.</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="wrap">
+      <div class="contact-inner">
+        <div class="reveal">
+          <div class="section-label">Get in touch</div>
+          <h2>Let's work on something.</h2>
+          <p class="contact-sub">I'm looking for internships, junior roles, or interesting projects. If you're <span class="hl">building something in Nairobi</span> — or anywhere, really — I'd love to hear about it.</p>
+          <p class="contact-aside">I try to reply within a day or two. No recruiters sending mass templates, please.</p>
+        </div>
+        <div class="contact-links reveal">
+          <a href="mailto:jeremykwanjohi@gmail.com" class="contact-link-item">
+            <div><div class="contact-link-label">Email</div><div class="contact-link-val">jeremykwanjohi@gmail.com</div></div>
+            <div class="contact-arrow">↗</div>
           </a>
-        </article>
-
-        <article class="project-card reveal">
-          <div class="project-top">
-            <p class="project-type">Cloud Architecture / FinTech</p>
-            <h3>Cloud Financial Services App Design</h3>
-          </div>
-
-          <p>
-            Designed a cloud-based financial services mobile application for sending money,
-            receiving money, paying merchants, viewing transaction history, and supporting
-            secure authentication.
-          </p>
-
-          <div class="stack">
-            <span>System Design</span>
-            <span>Cloud Architecture</span>
-            <span>API Gateway</span>
-            <span>Authentication</span>
-            <span>Database Design</span>
-          </div>
-
-          <div class="project-note">
-            Shows architecture thinking around scalability, payment security,
-            transaction flows, notifications, and admin monitoring.
-          </div>
-
-          <a href="#contact" class="project-link">
-            Discuss project →
+          <a href="https://github.com/jeremywanjohi" target="_blank" rel="noreferrer" class="contact-link-item">
+            <div><div class="contact-link-label">GitHub</div><div class="contact-link-val">jeremywanjohi</div></div>
+            <div class="contact-arrow">↗</div>
           </a>
-        </article>
-
-        <article class="project-card reveal">
-          <div class="project-top">
-            <p class="project-type">IoT / Embedded Systems</p>
-            <h3>IoT Greenhouse Monitoring</h3>
-          </div>
-
-          <p>
-            A greenhouse monitoring concept focused on sensors, environmental data,
-            and practical agriculture automation.
-          </p>
-
-          <div class="stack">
-            <span>IoT</span>
-            <span>Sensors</span>
-            <span>Monitoring</span>
-            <span>Systems Design</span>
-          </div>
-
-          <div class="project-note">
-            Connects software with physical-world data collection and environmental monitoring.
-          </div>
-
-          <a href="#contact" class="project-link">
-            More details →
+          <a href="https://www.linkedin.com/in/YOUR-LINKEDIN" target="_blank" rel="noreferrer" class="contact-link-item">
+            <div><div class="contact-link-label">LinkedIn</div><div class="contact-link-val">Add your handle here</div></div>
+            <div class="contact-arrow">↗</div>
           </a>
-        </article>
-      </div>
-    </section>
-
-    <section class="section" id="experience">
-      <div class="section-heading reveal">
-        <p class="eyebrow">Experience</p>
-        <h2>Industry exposure</h2>
-      </div>
-
-      <div class="experience-grid">
-        <article class="experience-card reveal">
-          <div>
-            <p class="project-type">Jan 2025 — Mar 2025 · Nairobi</p>
-            <h3>Frontend Engineering Intern · BuuPass</h3>
-          </div>
-
-          <p>
-            Rebuilt internal React dashboard workflows for customer support, improved layout
-            consistency, upgraded framework/dependency versions, gathered user requirements,
-            and translated customer-care pain points into interface improvements.
-          </p>
-
-          <div class="stack">
-            <span>React</span>
-            <span>Frontend Engineering</span>
-            <span>Jira</span>
-            <span>Git</span>
-            <span>UI Improvements</span>
-          </div>
-        </article>
-
-        <article class="experience-card reveal">
-          <div>
-            <p class="project-type">Jul 2019 — Aug 2019 · Nairobi</p>
-            <h3>UI/UX Design Intern · BuuPass</h3>
-          </div>
-
-          <p>
-            Designed a flight-ticketing prototype, reviewed booking flows,
-            identified usability issues, and presented design recommendations.
-          </p>
-
-          <div class="stack">
-            <span>UI/UX</span>
-            <span>Prototyping</span>
-            <span>Booking Flows</span>
-          </div>
-        </article>
-
-        <article class="experience-card reveal">
-          <div>
-            <p class="project-type">Jul 2018 · Nairobi</p>
-            <h3>Innovation Hub Intern · Safaricom PLC</h3>
-          </div>
-
-          <p>
-            Consolidated user feedback and market observations to support early feature
-            decisions for the Bonga app.
-          </p>
-
-          <div class="stack">
-            <span>Innovation</span>
-            <span>User Feedback</span>
-            <span>Product Research</span>
-          </div>
-        </article>
-      </div>
-    </section>
-
-    <section class="section" id="skills">
-      <div class="section-heading reveal">
-        <p class="eyebrow">Capabilities</p>
-        <h2>What I can build</h2>
-      </div>
-
-      <div class="skills-grid">
-        <div class="skill-card reveal">
-          <h3>Frontend Products</h3>
-          <p>React, Angular, React Native, responsive interfaces, dashboards, and clean user flows.</p>
-        </div>
-
-        <div class="skill-card reveal">
-          <h3>Backend APIs</h3>
-          <p>Node.js, Express, FastAPI, REST APIs, authentication flows, and database-backed apps.</p>
-        </div>
-
-        <div class="skill-card reveal">
-          <h3>Data & ML Systems</h3>
-          <p>Python, Pandas, NumPy, TensorFlow/Keras, reinforcement learning, KPI pipelines, and model evaluation.</p>
-        </div>
-
-        <div class="skill-card reveal">
-          <h3>Databases</h3>
-          <p>PostgreSQL, MySQL, schema design, relational modelling, and operational data storage.</p>
-        </div>
-
-        <div class="skill-card reveal">
-          <h3>Deployment & Linux</h3>
-          <p>Linux, Azure VMs, systemd services, logs, ports, service monitoring, and troubleshooting.</p>
-        </div>
-
-        <div class="skill-card reveal">
-          <h3>Product Thinking</h3>
-          <p>Problem framing, user journeys, simple MVPs, feature prioritisation, and practical product design.</p>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <section class="section proof-section">
-      <div class="section-heading reveal">
-        <p class="eyebrow">Proof of Work</p>
-        <h2>Not just coursework</h2>
+  <!-- FOOTER -->
+  <footer>
+    <div class="wrap">
+      <div class="footer-inner">
+        <div class="footer-text">© <span id="year"></span> Jeremy Wanjohi</div>
+        <div class="footer-made">Built by hand in Nairobi ☕</div>
       </div>
-
-      <div class="proof-grid">
-        <div class="proof-card reveal">
-          <strong>Production-style dashboards</strong>
-          <span>React, Recharts, KPI views, comparison screens</span>
-        </div>
-        <div class="proof-card reveal">
-          <strong>Backend services</strong>
-          <span>REST APIs, FastAPI services, Node/Express APIs</span>
-        </div>
-        <div class="proof-card reveal">
-          <strong>Real-world data systems</strong>
-          <span>Traffic data ingestion, simulation state, logs, metrics</span>
-        </div>
-        <div class="proof-card reveal">
-          <strong>Public repositories</strong>
-          <span>Traffic RL, EcoLocator, and other project work on GitHub</span>
-        </div>
-      </div>
-    </section>
-
-    <section class="section timeline-section" id="timeline">
-      <div class="section-heading reveal">
-        <p class="eyebrow">Progression</p>
-        <h2>Project timeline</h2>
-      </div>
-
-      <div class="timeline">
-        <div class="timeline-item reveal">
-          <span>2024</span>
-          <div>
-            <h3>EcoLocator</h3>
-            <p>Mobile recycling centre locator and rewards system.</p>
-          </div>
-        </div>
-
-        <div class="timeline-item reveal">
-          <span>2024</span>
-          <div>
-            <h3>Cloud Financial Services Architecture</h3>
-            <p>Designed a secure, scalable cloud architecture for a mobile payments application.</p>
-          </div>
-        </div>
-
-        <div class="timeline-item reveal">
-          <span>2025</span>
-          <div>
-            <h3>BuuPass Frontend Internship</h3>
-            <p>Frontend engineering, internal dashboards, UI workflows, and product improvements.</p>
-          </div>
-        </div>
-
-        <div class="timeline-item reveal">
-          <span>2025</span>
-          <div>
-            <h3>Traffic RL SUMO Project</h3>
-            <p>Traffic simulation, reinforcement learning control, live APIs, deployment, and KPI dashboards.</p>
-          </div>
-        </div>
-
-        <div class="timeline-item reveal">
-          <span>2026</span>
-          <div>
-            <h3>Stockout Forecaster</h3>
-            <p>Explainable forecasting SaaS for small retailers.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="contact-section reveal" id="contact">
-      <p class="eyebrow">Contact</p>
-      <h2>Let’s build something useful.</h2>
-      <p>
-        I’m open to internships, junior software roles, frontend roles, data projects,
-        product engineering work, and practical software opportunities.
-      </p>
-
-      <div class="hero-actions contact-actions">
-        <a href="mailto:jeremykwanjohi@gmail.com" class="btn primary">Email Me</a>
-        <a href="https://github.com/jeremywanjohi" class="btn secondary" target="_blank" rel="noreferrer">
-          GitHub
-        </a>
-        <a href="https://www.linkedin.com/in/YOUR-LINKEDIN" class="btn secondary" target="_blank" rel="noreferrer">
-          LinkedIn
-        </a>
-      </div>
-
-      <p class="small-note">
-        Replace the LinkedIn placeholder with your real profile link before publishing.
-      </p>
-    </section>
-  </main>
-
-  <footer class="footer">
-    <p>© <span id="year"></span> Jeremy Wanjohi. Built with GitHub Pages.</p>
+    </div>
   </footer>
 
-  <script src="script.js"></script>
+  <script>
+    // ── YEAR ──
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // ── DARK MODE ──
+    const html = document.documentElement;
+    const btn  = document.getElementById('themeToggle');
+    const saved = localStorage.getItem('jw-theme');
+    if (saved) html.setAttribute('data-theme', saved);
+    btn.addEventListener('click', () => {
+      const next = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      html.setAttribute('data-theme', next);
+      localStorage.setItem('jw-theme', next);
+      // re-draw canvas with new dot colour
+      drawDots();
+    });
+
+    // ── INTERACTIVE DOT GRID ──
+    const canvas = document.getElementById('hero-canvas');
+    const ctx    = canvas.getContext('2d');
+    let W, H, dots, mouse = { x: -999, y: -999 };
+    const SPACING = 36, RADIUS = 1.5, INFLUENCE = 120;
+
+    function resize() {
+      W = canvas.width  = canvas.offsetWidth;
+      H = canvas.height = canvas.offsetHeight;
+      buildDots();
+    }
+
+    function buildDots() {
+      dots = [];
+      const cols = Math.ceil(W / SPACING) + 1;
+      const rows = Math.ceil(H / SPACING) + 1;
+      for (let r = 0; r < rows; r++)
+        for (let c = 0; c < cols; c++)
+          dots.push({ x: c * SPACING, y: r * SPACING, ox: c * SPACING, oy: r * SPACING });
+    }
+
+    function getDotColor() {
+      return getComputedStyle(html).getPropertyValue('--dot-color').trim() || 'rgba(0,0,0,0.1)';
+    }
+    function getGreenGlow() {
+      return getComputedStyle(html).getPropertyValue('--green').trim() || '#1a7a4a';
+    }
+
+    let rafId;
+    function drawDots() {
+      cancelAnimationFrame(rafId);
+      rafId = requestAnimationFrame(_draw);
+    }
+
+    function _draw() {
+      ctx.clearRect(0, 0, W, H);
+      const baseColor  = getDotColor();
+      const glowColor  = getGreenGlow();
+
+      for (const d of dots) {
+        const dx   = mouse.x - d.ox;
+        const dy   = mouse.y - d.oy;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        const pull = Math.max(0, 1 - dist / INFLUENCE);
+
+        // push dots slightly toward mouse
+        d.x = d.ox + dx * pull * 0.25;
+        d.y = d.oy + dy * pull * 0.25;
+
+        ctx.beginPath();
+        ctx.arc(d.x, d.y, RADIUS + pull * 2, 0, Math.PI * 2);
+
+        if (pull > 0.05) {
+          // near mouse: green tinted
+          ctx.globalAlpha = 0.15 + pull * 0.55;
+          ctx.fillStyle = glowColor;
+        } else {
+          ctx.globalAlpha = 1;
+          ctx.fillStyle = baseColor;
+        }
+        ctx.fill();
+      }
+      ctx.globalAlpha = 1;
+    }
+
+    // continuous gentle drift animation
+    let tick = 0;
+    function animate() {
+      tick += 0.012;
+      ctx.clearRect(0, 0, W, H);
+      const baseColor = getDotColor();
+      const glowColor = getGreenGlow();
+
+      for (let i = 0; i < dots.length; i++) {
+        const d    = dots[i];
+        const dx   = mouse.x - d.ox;
+        const dy   = mouse.y - d.oy;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        const pull = Math.max(0, 1 - dist / INFLUENCE);
+
+        // subtle sine drift
+        const drift = Math.sin(tick + i * 0.15) * 1.2;
+        d.x = d.ox + dx * pull * 0.28 + (pull < 0.05 ? drift * 0.3 : 0);
+        d.y = d.oy + dy * pull * 0.28 + (pull < 0.05 ? drift * 0.3 : 0);
+
+        ctx.beginPath();
+        ctx.arc(d.x, d.y, RADIUS + pull * 2.5, 0, Math.PI * 2);
+
+        if (pull > 0.04) {
+          ctx.globalAlpha = 0.2 + pull * 0.6;
+          ctx.fillStyle = glowColor;
+        } else {
+          ctx.globalAlpha = 1;
+          ctx.fillStyle = baseColor;
+        }
+        ctx.fill();
+      }
+      ctx.globalAlpha = 1;
+      requestAnimationFrame(animate);
+    }
+
+    window.addEventListener('resize', resize);
+
+    document.querySelector('.hero').addEventListener('mousemove', e => {
+      const r = canvas.getBoundingClientRect();
+      mouse.x = e.clientX - r.left;
+      mouse.y = e.clientY - r.top;
+    });
+    document.querySelector('.hero').addEventListener('mouseleave', () => {
+      mouse.x = -999; mouse.y = -999;
+    });
+
+    resize();
+    animate();
+
+    // ── SCROLL REVEAL ──
+    const observer = new IntersectionObserver(
+      entries => entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
+      }),
+      { threshold: 0.06, rootMargin: '0px 0px -40px 0px' }
+    );
+    document.querySelectorAll('.reveal, .reveal-children').forEach(el => observer.observe(el));
+
+    // ── TICKER ──
+    const track = document.querySelector('.ticker-track');
+    if (track) {
+      track.addEventListener('mouseenter', () => track.style.animationPlayState = 'paused');
+      track.addEventListener('mouseleave', () => track.style.animationPlayState = 'running');
+    }
+  </script>
 </body>
 </html>
